@@ -1,4 +1,6 @@
 polars
+pyarrow
 numpy
 seaborn
+jupyterlab
 
