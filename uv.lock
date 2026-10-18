@@ -100,7 +100,7 @@ wheels = [
 ]
 
 [[package]]
-name = "end-to-end-ml-project"
+name = "end-to-end-ml-project-yt"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
