@@ -4,4 +4,6 @@ numpy
 seaborn
 jupyterlab
 scikit-learn
+dill
+pydantic
 
