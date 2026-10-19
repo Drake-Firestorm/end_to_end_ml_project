@@ -3,4 +3,5 @@ pyarrow
 numpy
 seaborn
 jupyterlab
+scikit-learn
 

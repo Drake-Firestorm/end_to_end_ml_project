@@ -1,4 +1,5 @@
 import sys
+
 from end_to_end_ml_project_yt.logger import logging
 
 
@@ -6,7 +7,7 @@ def error_message_details(error, error_details: sys):
     _, _, exc_tb = error_details.exc_info()
     file_name = exc_tb.tb_frame.f_code.co_filename
 
-    error_messge = f"Error occured in python script {file_name} line number {exc_tb.tb_lineno} error message {str(error)}"
+    error_messge = f"Error occured in python script {file_name} line number {exc_tb.tb_lineno} error message {error!s}"
 
     return error_messge
 
