@@ -1,10 +1,12 @@
 import os
 import sys
+from datetime import datetime
 
 import dill
 import mlflow
 import mlflow.sklearn
 from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
 
 from end_to_end_ml_project_yt.exception import CustomException
 
@@ -30,7 +32,8 @@ def evaluate_models(
     X_test,
     y_test,
     models,
-    experiment_name="model-evaluation",
+    params,
+    experiment_name=f"model-evaluation-{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}",
     log_models=True,
 ):
     try:
@@ -44,6 +47,12 @@ def evaluate_models(
             with mlflow.start_run(run_name=name):
                 mlflow.log_param("model_name", name)
 
+                param = params[name]
+
+                gs = GridSearchCV(model, param, cv=3)
+                gs.fit(X_train, y_train)
+
+                model.set_params(**gs.best_params_)
                 model.fit(X_train, y_train)
 
                 y_test_pred = model.predict(X_test)

@@ -49,12 +49,47 @@ class ModelTrainer:
                 "XG Boost Regressor": XGBRegressor(),
             }
 
+            param_grid = {
+                "Linear Regression": {},
+                "Cat Boost Regressor": {
+                    "depth": [6, 8, 10],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "iterations": [30, 50, 100],
+                },
+                "Ada Boost Regressor": {
+                    "learning_rate": [0.001, 0.01, 0.1, 0.5],
+                    "n_estimators": [50, 100, 256],
+                },
+                "Gradient Boost Regressor": {
+                    "learning_rate": [0.001, 0.01, 0.1],
+                    "subsample": [0.7, 0.8, 0.9],
+                    "n_estimators": [50, 100, 256],
+                    "max_depth": [3, 5, 7],
+                },
+                "Random Forest Regressor": {
+                    "n_estimators": [100, 256],
+                    "max_depth": [10, 15, 20, None],
+                    "min_samples_leaf": [1, 2, 4],
+                },
+                "K-Neighbors Regressor": {"n_neighbors": [5, 7, 9, 11]},
+                "Decision Tree Regressor": {
+                    "criterion": ["squared_error", "friedman_mse"],
+                    "max_depth": [3, 5, 7, 10, None],
+                },
+                "XG Boost Regressor": {
+                    "learning_rate": [0.001, 0.01, 0.1],
+                    "n_estimators": [50, 100, 256],
+                    "max_depth": [3, 5, 7, 10],
+                },
+            }
+
             model_report: dict = evaluate_models(
                 X_train=X_train,
                 y_train=y_train,
                 X_test=X_test,
                 y_test=y_test,
                 models=models,
+                params=param_grid,
             )
 
             # To get best model score from dict
