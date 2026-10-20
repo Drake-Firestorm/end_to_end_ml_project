@@ -6,4 +6,6 @@ jupyterlab
 scikit-learn
 dill
 pydantic
+catboost
+xgboost
 
